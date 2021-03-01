@@ -8,7 +8,7 @@ This repo provides the code for reproducing the experiments in RoR: Read-over-Re
 
 ## Pre-trained Models
 
-RoR uses the pre-train model [ELECTRA-large](https://github.com/google-research/electra) as the text encoder. You should download it and put the ckpt models and config.json under the dir model. 
+RoR uses the pre-train model [ELECTRA-large](https://github.com/google-research/electra) as the text encoder. You should download it and put the ckpt models and config.json under the of model. 
 
 ## Dataset
 
@@ -16,4 +16,6 @@ The training set and validation set of QuAC are [here](https://quac.ai/).
 
 ## Run
 
+sh run.sh
 
+run.sh is the script of RoR pipeline.
