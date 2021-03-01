@@ -133,4 +133,7 @@ python tool/convert_quac_cross.py \
 --answer_threshold=${ANSWERTHRESHOLD}
 ```
 
-
+The above pipeline are integrated a shell script run.sh. you can directly run it.
+```
+bash run.sh
+```
