@@ -7,7 +7,8 @@ This repo provides the code for reproducing the experiments in RoR: Read-over-Re
 
 ## Dependency
 
-python3
+environment:python3
+
 tensorflow-gpu version: 1.13
 
 ## Pre-trained Models
@@ -137,3 +138,5 @@ The above pipeline are integrated a shell script run.sh. you can directly run it
 ```
 bash run.sh
 ```
+
+
