@@ -20,6 +20,117 @@ The training set and validation set of QuAC are [here](https://quac.ai/).
 
 ## Run
 
-sh run.sh
+experiment configuration
 
-run.sh is the script of RoR pipeline, including two python scripts : electra_quac.py for fisrt read and electra_answer_as_text.py for second read. answers_to_text.py is the script for minimum span coverage algorithm to create a condensed document.
+```
+GPUDEVICE='0'
+NUMGPUS=1
+TASKNAME='quac'
+RANDOMSEED=100
+PREDICTTAG=best
+MODELDIR='./model'
+DATADIR='./quac'
+OUTPUTDIR='./output'
+NUMTURN=2
+SEQLEN=512
+QUERYLEN=128
+ANSWERLEN=64
+BATCHSIZE=4
+LEARNINGRATE=2e-5
+TRAINSTEPS=30000
+WARMUPSTEPS=0
+SAVESTEPS=1000
+ANSWERTHRESHOLD=0.3
+DOLOWERCASE=true
+LAYERDECAY=0.75
+MIDDLELOSS=false
+DECAYMETHOD='cos'
+ADJUSTLOSS=true
+LABELSMOOTHING=false
+RERANK=false
+FREEZEBASELINE=false
+```
+
+first read
+```
+CUDA_VISIBLE_DEVICES=${GPUDEVICE} python3 electra_quac.py \
+--vocab_file=${MODELDIR}/vocab.txt \
+--model_config_path=${MODELDIR}/bert_config.json \
+--init_checkpoint=${MODELDIR}/model.ckpt-20000 \
+--task_name=${TASKNAME} \
+--random_seed=${RANDOMSEED} \
+--predict_tag=${PREDICTTAG} \
+--do_lower_case=${DOLOWERCASE} \
+--data_dir=${DATADIR}/ \
+--output_dir=${OUTPUTDIR}/data \
+--model_dir=${OUTPUTDIR}/checkpoint  \
+--export_dir=${OUTPUTDIR}/export \
+--num_turn=${NUMTURN} \
+--max_seq_length=${SEQLEN} \
+--max_query_length=${QUERYLEN} \
+--max_answer_length=${ANSWERLEN} \
+--train_batch_size=${BATCHSIZE} \
+--predict_batch_size=${BATCHSIZE} \
+--num_hosts=1 \
+--num_core_per_host=1 \
+--learning_rate=${LEARNINGRATE} \
+--train_steps=${TRAINSTEPS} \
+--warmup_steps=${WARMUPSTEPS} \
+--adjust_loss=${ADJUSTLOSS} \
+--rerank=${RERANK} \
+--save_steps=${SAVESTEPS} \
+--do_train=false \
+--do_predict=true \
+--do_export=false \
+--overwrite_data=false 
+```
+
+create a condensed document through minimum span coverage algorithm 
+```
+python3 answers_to_text.py
+```
+
+recond read
+
+```
+CUDA_VISIBLE_DEVICES=${GPUDEVICE} python electra_answer_as_text.py \
+--vocab_file=${MODELDIR}/vocab.txt \
+--model_config_path=${MODELDIR}/bert_config.json \
+--init_checkpoint=${MODELDIR}/reanswer/model.ckpt-20000 \
+--task_name=${TASKNAME} \
+--random_seed=${RANDOMSEED} \
+--predict_tag=reanswer \
+--do_lower_case=${DOLOWERCASE} \
+--data_dir=${DATADIR}/ \
+--output_dir=${OUTPUTDIR}/data_reanswer \
+--model_dir=${OUTPUTDIR}/checkpoint \
+--export_dir=${OUTPUTDIR}/export \
+--num_turn=${NUMTURN} \
+--max_seq_length=${SEQLEN} \
+--max_query_length=${QUERYLEN} \
+--max_answer_length=${ANSWERLEN} \
+--train_batch_size=${BATCHSIZE} \
+--predict_batch_size=${BATCHSIZE} \
+--num_hosts=1 \
+--num_core_per_host=1 \
+--learning_rate=${LEARNINGRATE} \
+--train_steps=${TRAINSTEPS} \
+--warmup_steps=${WARMUPSTEPS} \
+--adjust_loss=${ADJUSTLOSS} \
+--rerank=${RERANK} \
+--save_steps=${SAVESTEPS} \
+--do_train=false \
+--do_predict=true \
+--do_export=false \
+--overwrite_data=false
+```
+
+post-process (answer aggregation and voting)
+```
+python tool/convert_quac_cross.py \
+--input_file=./predict.best.detail.json \
+--output_file=${OUTPUTDIR}/data/predict.${PREDICTTAG}.span.json \
+--answer_threshold=${ANSWERTHRESHOLD}
+```
+
+
