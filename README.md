@@ -5,9 +5,9 @@ This repo provides the code for reproducing the experiments in RoR: Read-over-Re
 <p align="center"><img src="/quac/QuAC.png" width=800></p>
 <p align="center"><i>Figure : Illustrations of RoR framework</i></p>
 
-## Dependency
+## Environment
 
-environment:python3
+python3
 
 tensorflow-gpu version: 1.13
 
@@ -134,7 +134,7 @@ python tool/convert_quac_cross.py \
 --answer_threshold=${ANSWERTHRESHOLD}
 ```
 
-The above pipeline are integrated a shell script run.sh. you can directly run it.
+The above pipeline are integrated a shell script run.sh. you can directly run it through:
 ```
 bash run.sh
 ```
