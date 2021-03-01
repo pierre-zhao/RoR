@@ -139,4 +139,8 @@ The above pipeline are integrated a shell script run.sh. you can directly run it
 bash run.sh
 ```
 
+## Results
+
+The QuAC leaderboard is [here] (https://quac.ai/). RoR ranks the 1st place on the QuAC leaderboard. Please refer our paper to get more ablation results. 
+
 
