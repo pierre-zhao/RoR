@@ -2,6 +2,9 @@
 
 This repo provides the code for reproducing the experiments in RoR: Read-over-Read for Concersational Mechaine Reading Comprehensition task (C-MRC). In this paper, we propose a Read-over-Read pipeline for tackle the problem of long input in C-MRC task. 
 
+<p align="center"><img src="/quac/quac3.pdf" width=800></p>
+<p align="center"><i>Figure : Illustrations of fine-tuning XLNet on different tasks</i></p>
+
 ## Dependency
 
 - pip install tensorflow-gpu=1.13
@@ -18,4 +21,4 @@ The training set and validation set of QuAC are [here](https://quac.ai/).
 
 sh run.sh
 
-run.sh is the script of RoR pipeline.
+run.sh is the script of RoR pipeline. 
