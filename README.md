@@ -91,7 +91,7 @@ create a condensed document through minimum span coverage algorithm
 python3 answers_to_text.py
 ```
 
-recond read
+second read
 
 ```
 CUDA_VISIBLE_DEVICES=${GPUDEVICE} python electra_answer_as_text.py \
