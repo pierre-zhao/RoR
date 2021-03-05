@@ -1,6 +1,6 @@
 # RoR
 
-This repo provides the code for reproducing the experiments in RoR: Read-over-Read for Concersational Mechaine Reading Comprehensition task (C-MRC). In this paper, we propose a Read-over-Read pipeline for tackle the problem of long input in C-MRC task. 
+This repo provides the code for reproducing the experiments in RoR: Read-over-Read for Concersational Mechaine Reading Comprehensition task (C-MRC). In this paper, we propose a Read-over-Read pipeline to tackle the problem of long input in C-MRC task. 
 
 <p align="center"><img src="/quac/QuAC.png" width=800></p>
 <p align="center"><i>Figure : Illustrations of RoR framework</i></p>
