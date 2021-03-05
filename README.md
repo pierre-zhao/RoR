@@ -21,7 +21,7 @@ The training set and validation set of QuAC are [here](https://quac.ai/).
 
 ## Run
 
-experiment configuration
+Experiment configuration
 
 ```
 GPUDEVICE='0'
@@ -52,7 +52,7 @@ RERANK=false
 FREEZEBASELINE=false
 ```
 
-first read
+First read (chunk reader)
 ```
 CUDA_VISIBLE_DEVICES=${GPUDEVICE} python3 electra_quac.py \
 --vocab_file=${MODELDIR}/vocab.txt \
@@ -86,12 +86,12 @@ CUDA_VISIBLE_DEVICES=${GPUDEVICE} python3 electra_quac.py \
 --overwrite_data=false 
 ```
 
-create a condensed document through minimum span coverage algorithm 
+Create a condensed document through minimum span coverage algorithm 
 ```
 python3 answers_to_text.py
 ```
 
-second read
+Second read (document reader)
 
 ```
 CUDA_VISIBLE_DEVICES=${GPUDEVICE} python electra_answer_as_text.py \
@@ -126,7 +126,7 @@ CUDA_VISIBLE_DEVICES=${GPUDEVICE} python electra_answer_as_text.py \
 --overwrite_data=false
 ```
 
-post-process (answer aggregation and voting)
+Post-process (answer aggregation and voting)
 ```
 python tool/convert_quac_cross.py \
 --input_file=./predict.best.detail.json \
