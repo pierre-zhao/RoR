@@ -9,7 +9,7 @@ tensorflow-gpu version: 1.13
 
 ## Pre-trained Models
 
-RoR uses the pre-train model [ELECTRA-large](https://github.com/google-research/electra) as the text encoder. You should download it and put the ckpt models and config.json under `$BERT-base-DIR`. 
+RoR uses the pre-train model [ELECTRA-large](https://github.com/google-research/electra) as the text encoder. You should download it and put the ckpt models and config.json under `$Model_DIR`. 
 
 ## Dataset
 
