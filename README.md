@@ -1,19 +1,15 @@
 # RoR
 
-This repo provides the code for reproducing the experiments in RoR: Read-over-Read for Concersational Mechaine Reading Comprehensition task (C-MRC). In this paper, we propose a Read-over-Read pipeline to tackle the problem of long input in C-MRC task. 
-
-<p align="center"><img src="/quac/QuAC.png" width=800></p>
-<p align="center"><i>Figure : Illustrations of RoR framework</i></p>
+This repo provides the code for reproducing the experiments of RoR in QuAC dataset. 
 
 ## Environment
 
-python3
-
+python ==3.6.7
 tensorflow-gpu version: 1.13
 
 ## Pre-trained Models
 
-RoR uses the pre-train model [ELECTRA-large](https://github.com/google-research/electra) as the text encoder. You should download it and put the ckpt models and config.json under the dir of model. 
+RoR uses the pre-train model [ELECTRA-large](https://github.com/google-research/electra) as the text encoder. You should download it and put the ckpt models and config.json under `$BERT-base-DIR`. 
 
 ## Dataset
 
@@ -134,7 +130,7 @@ python tool/convert_quac_cross.py \
 --answer_threshold=${ANSWERTHRESHOLD}
 ```
 
-The above pipeline are integrated a shell script run.sh. you can directly run it through:
+The above steps are integrated to a shell script run.sh. you can directly run it through:
 ```
 bash run.sh
 ```
