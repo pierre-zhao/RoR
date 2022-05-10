@@ -15,7 +15,7 @@ RoR uses the pre-train model [ELECTRA-large](https://github.com/google-research/
 
 The training set and validation set of QuAC are [here](https://quac.ai/).
 
-## Run
+## Running
 
 Experiment configuration
 
@@ -48,7 +48,7 @@ RERANK=false
 FREEZEBASELINE=false
 ```
 
-First read (chunk reader)
+First reading (chunk reader)
 ```
 CUDA_VISIBLE_DEVICES=${GPUDEVICE} python3 electra_quac.py \
 --vocab_file=${MODELDIR}/vocab.txt \
@@ -82,12 +82,12 @@ CUDA_VISIBLE_DEVICES=${GPUDEVICE} python3 electra_quac.py \
 --overwrite_data=false 
 ```
 
-Create a condensed document through minimum span coverage algorithm 
+Creating a condensed document through minimum span coverage algorithm 
 ```
 python3 answers_to_text.py
 ```
 
-Second read (document reader)
+Second reading (document reader)
 
 ```
 CUDA_VISIBLE_DEVICES=${GPUDEVICE} python electra_answer_as_text.py \
@@ -122,7 +122,7 @@ CUDA_VISIBLE_DEVICES=${GPUDEVICE} python electra_answer_as_text.py \
 --overwrite_data=false
 ```
 
-Post-process (answer aggregation and voting)
+Post-processing (answer aggregation and voting)
 ```
 python tool/convert_quac_cross.py \
 --input_file=./predict.best.detail.json \
@@ -137,6 +137,6 @@ bash run.sh
 
 ## Results
 
-The QuAC leaderboard is [here] (https://quac.ai/). RoR ranks the 1st place on the QuAC leaderboard. Please refer our paper to get more ablation results. 
+The QuAC leaderboard is [here](https://quac.ai/). RoR ranks the 1st place on the QuAC leaderboard. Please refer our paper to get more ablation results. 
 
 
