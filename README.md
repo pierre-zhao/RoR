@@ -4,12 +4,12 @@ This repo provides the code for reproducing the experiments of RoR in QuAC datas
 
 ## Environment
 
-python ==3.6.7
-tensorflow-gpu version: 1.13
+python == 3.6.7 <br>
+tensorflow-gpu == 1.13
 
 ## Pre-trained Models
 
-RoR uses the pre-train model [ELECTRA-large](https://github.com/google-research/electra) as the text encoder. You should download it and put the ckpt models and config.json under `$Model_DIR`. 
+RoR uses the pre-trained model [ELECTRA-large](https://github.com/google-research/electra) as the text encoder. You should download it and put the ckpt models and config.json under `$Model_DIR`. 
 
 ## Dataset
 
@@ -82,7 +82,7 @@ CUDA_VISIBLE_DEVICES=${GPUDEVICE} python3 electra_quac.py \
 --overwrite_data=false 
 ```
 
-Creating a condensed document through minimum span coverage algorithm 
+Creating a condensed document through the minimum span coverage algorithm 
 ```
 python3 answers_to_text.py
 ```
@@ -137,6 +137,6 @@ bash run.sh
 
 ## Results
 
-The QuAC leaderboard is [here](https://quac.ai/). RoR ranks the 1st place on the QuAC leaderboard. Please refer our paper to get more ablation results. 
+The QuAC leaderboard is [here](https://quac.ai/). RoR ranks the 1st place on the QuAC leaderboard. Please refer to our paper to get more ablation results. 
 
 
